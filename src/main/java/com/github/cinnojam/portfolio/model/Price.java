@@ -1,20 +1,26 @@
 package com.github.cinnojam.portfolio.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "price")
-public class Price {
+public class Price implements Comparable<Price>, Serializable {
+	private static final long serialVersionUID = 2053784864377099422L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private String cusip;
+	@ManyToOne
+	@JoinColumn(name = "cusip", referencedColumnName = "cusip", nullable = false)
+	private Security security;
 	private LocalDate date;
 	private Double price;
 
@@ -22,10 +28,10 @@ public class Price {
 		super();
 	}
 
-	public Price(Integer id, String cusip, LocalDate date, Double price) {
+	public Price(Integer id, Security security, LocalDate date, Double price) {
 		super();
 		this.id = id;
-		this.cusip = cusip;
+		this.security = security;
 		this.date = date;
 		this.price = price;
 	}
@@ -38,12 +44,12 @@ public class Price {
 		this.id = id;
 	}
 
-	public String getCusip() {
-		return cusip;
+	public Security getSecurity() {
+		return security;
 	}
 
-	public void setCusip(String cusip) {
-		this.cusip = cusip;
+	public void setSecurity(Security security) {
+		this.security = security;
 	}
 
 	public LocalDate getDate() {
@@ -60,6 +66,16 @@ public class Price {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	@Override
+	public int compareTo(Price o) {
+		if (this==o) return 0;
+		if (this.security.equals(o.getSecurity())) {
+			return this.date.compareTo(o.getDate());
+		} else {
+			return this.security.getCusip().compareTo(o.getSecurity().getCusip());
+		}
 	}
 
 }
