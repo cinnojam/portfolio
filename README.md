@@ -10,7 +10,7 @@ curl http://localhost:8080/issuers
 docker ps
 docker stop <container id>
 ### tag
-docker tag exercise cinnojam/cinnojam:exercise
+docker tag exercise cinnojam/cinnojam:portfolio
 ### share: docker push <user name>/<repo name>:<tag name>
 docker login -u user -p pwd
 docker push cinnojam/cinnojam:portfolio
