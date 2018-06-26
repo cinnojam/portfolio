@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: portfolio
+  datasource: 
+    continue-on-error: true
+    url: jdbc:mysql://host:port/schema
+    username: myuser
+    password: mypwd
+    
+server:
+  port: 8080
