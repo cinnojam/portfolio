@@ -1,11 +1,13 @@
 spring:
-  application:
-    name: portfolio
   datasource: 
     continue-on-error: true
-    url: jdbc:mysql://host:port/schema
-    username: myuser
-    password: mypwd
-    
-server:
-  port: 8080
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:portfolio
+    username: sa
+    password: sa
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        ddl-auto: create-drop
+
