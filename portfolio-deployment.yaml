@@ -4,26 +4,28 @@ metadata:
   labels:
     app: portfolio
   name: portfolio
-  namespace: "dev"
+  namespace: "development"
 spec:
   replicas: 2
   selector:
-    app: portfolio
+#    app: portfolio
   template:
     metadata:
       labels:
         app: portfolio
     spec:
-      minReadySeconds: 0
-      revisionHistoryLimit: 1
-      strategy:
-        type: RollingUpdate
-        rollingUpdate:
-          maxSurge: 1
-          maxUnavailable: 1
+#      minReadySeconds: 0
+#      revisionHistoryLimit: 1
+#      strategy:
+#       type: RollingUpdate
+#        rollingUpdate:
+#          maxSurge: 1
+#          maxUnavailable: 1
+      imagePullPolicy: Always
       containers:
       - image: cinnojam/cinnojam:portfolio
         name: portfolio
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
           name: backend-http
