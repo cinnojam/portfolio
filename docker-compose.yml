@@ -1,12 +1,16 @@
-version: "3"
+version: "3.3"
 services:
   portfolio:
     build:
       context: .
       args:
         JAR_FILE: "./target/portfolio-0.0.1-SNAPSHOT.jar"
+      labels:
+        org.label-schema.name: portfolio
+        org.label-schema.schema-version: "1.0"
+        org.label-schema.vcs-url: https://github.com/cinnojam/portfolio.git
     # Pull the image we uploaded in step 2 from the registry.
-    image: cinnojam/cinnojam:portfolio
+    image: cinnojam/portfolio:latest
     deploy:
       # Run x instances of that image as a service called web
       replicas: 1
