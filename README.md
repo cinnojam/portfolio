@@ -7,7 +7,7 @@ docker build . --build-arg JAR_FILE=./target/portfolio-0.0.1-SNAPSHOT.jar -t cin
 ### run
 docker run -d -p 8080:8080 cinnojam/portfolio:latest
 ### test
-curl http://localhost:8080/issuers
+curl http://localhost:8080/portfolio/issuers
 ### stop
 docker ps
 docker stop <container id>
@@ -22,7 +22,7 @@ docker-compose build
 ### run
 docker-compose up
 ### test
-curl http://localhost:8080/issuers
+curl http://localhost:8080/portfolio/issuers
 ### stop
 docker-compose down
 ### share

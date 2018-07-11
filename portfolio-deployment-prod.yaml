@@ -4,7 +4,7 @@ metadata:
   labels:
     app: portfolio
   name: portfolio
-  namespace: "development"
+  namespace: "production"
 spec:
   replicas: 2
   selector:
@@ -23,7 +23,7 @@ spec:
 #          maxUnavailable: 1
       imagePullPolicy: Always
       containers:
-      - image: cinnojam/portfolio:latest
+      - image: cinnojam/portfolio:dev
         name: portfolio
         imagePullPolicy: Always
         ports:
